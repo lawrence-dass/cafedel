@@ -1,7 +1,13 @@
 import React from 'react';
 
+import UpdateRestaurant from '../components/UpdateRestaurant';
+
 const UpdatePage = () => {
-  return <div>UpdatePage</div>;
+  return (
+    <div>
+      <UpdateRestaurant />
+    </div>
+  );
 };
 
 export default UpdatePage;
