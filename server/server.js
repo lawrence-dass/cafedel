@@ -18,12 +18,13 @@ app.use(express.json())
 // get all restautants
 app.get('/restaurants', async (req, res) => {
   try {
-    const results = await db.query('SELECT * FROM restaurants')
+    const restaurantRatingData = await db.query("SELECT * FROM restaurants LEFT JOIN (select restaurant_id, COUNT(*), TRUNC(AVG(rating),1) AS average_rating from reviews GROUP BY restaurant_id) reviews on restaurants.id = reviews.restaurant_id;"
+    );
     res.status(200).json({
       status: "success",
-      results: results.rows.length,
+      results: restaurantRatingData.rows.length,
       data: {
-        restaurants: results.rows
+        restaurants: restaurantRatingData.rows
       }
     })
   } catch (err) {
@@ -36,11 +37,13 @@ app.get('/restaurants', async (req, res) => {
 app.get('/restaurants/:id', async (req, res) => {
   try {
     // parameterized query // avoid string interpolation
-    const results = await db.query('SELECT * FROM restaurants WHERE id = $1', [req.params.id]);
+    const restaurants = await db.query('SELECT * FROM restaurants LEFT JOIN (select restaurant_id, COUNT(*), TRUNC(AVG(rating),1) AS average_rating from reviews GROUP BY restaurant_id) reviews on restaurants.id = reviews.restaurant_id WHERE id = $1', [req.params.id]);
+    const reviews = await db.query('SELECT * FROM reviews WHERE restaurant_id = $1', [req.params.id]);
     res.status(200).json({
       status: "success",
       data: {
-        "restaurant": results.rows[0]
+        "restaurant": restaurants.rows[0],
+        "reviews": reviews.rows
       }
     })
   } catch (err) {
@@ -87,6 +90,23 @@ app.delete('/restaurants/:id', async (req, res) => {
       status: "success",
       data: {
         "restaurant": "dummy deleted"
+      }
+    })
+  } catch (err) {
+    console.log({ err })
+  }
+})
+
+// add review
+
+app.post('/restaurants/:id/addReview', async (req, res) => {
+  try {
+    const newReview = await db.query('INSERT INTO reviews (restaurant_id, name, review, rating) VALUES ($1, $2, $3, $4 ) returning *', [req.params.id, req.body.name, req.body.review, req.body.rating]);
+    console.log({ newReview })
+    res.status(201).json({
+      status: 'success',
+      data: {
+        review: newReview.rows[0]
       }
     })
   } catch (err) {
