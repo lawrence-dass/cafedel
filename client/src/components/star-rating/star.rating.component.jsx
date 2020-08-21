@@ -1,16 +1,16 @@
 import React from 'react';
 
+import { FullStar, HalfStar, EmptyStar } from './star-rating.style';
+
 const StarRating = ({ rating }) => {
   const stars = [];
   for (let i = 1; i <= 5; i++) {
     if (i <= rating) {
-      stars.push(<i key={i} className="fas fa-star text-yellow-500"></i>);
+      stars.push(<FullStar key={i} />);
     } else if (i === Math.ceil(rating) && !Number.isInteger(rating)) {
-      stars.push(
-        <i key={i} className="fas fa-star-half-alt text-yellow-500"></i>
-      );
+      stars.push(<HalfStar key={i} />);
     } else {
-      stars.push(<i key={i} className="far fa-star text-yellow-500"></i>);
+      stars.push(<EmptyStar key={i} />);
     }
   }
   return <>{stars}</>;

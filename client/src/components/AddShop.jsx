@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import RestaurantFinder from '../apis/RestaurantFinder';
-import { RestaurantsContext } from '../context/RestaurantContext';
+import ShopService from '../apis/ShopService';
+import { ShopsContext } from '../context/ShopContext';
 
-const AddRestaurant = () => {
-  const { addRestaurants } = useContext(RestaurantsContext);
+const AddShop = () => {
+  const { addShops } = useContext(ShopsContext);
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
   const [priceRange, setPriceRange] = useState('Price Range');
@@ -11,47 +11,49 @@ const AddRestaurant = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await RestaurantFinder.post('/', {
+      const response = await ShopService.post('/', {
         name,
         location,
         price_range: priceRange,
       });
       console.log(response);
-      addRestaurants(response.data.data.restaurant);
+      addShops(response.data.data.shop);
     } catch (err) {
       console.log({ err });
     }
   };
 
   return (
-    <div className="mb-4">
-      <form>
-        <div className="form-row">
-          <div className="col">
+    <div className="w-10/12 m-auto">
+      <form className="w-11/12">
+        <div className="flex">
+          <div className="flex-1 mr-3 ml-20">
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Name"
               type="text"
-              className="form-control"
+              className="shadow appearance-none border w-full h-10 rounded py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
-          <div className="col">
+          <div className="flex-1 mr-3">
             <input
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="Location"
               type="text"
-              className="form-control"
+              className="shadow appearance-none border w-full h-10 rounded py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
-          <div className="col">
+          <div className="flex-1 mr-3">
             <select
               value={priceRange}
               onChange={(e) => setPriceRange(e.target.value)}
-              className="custom-select mr-sm-2"
+              className="block appearance-none w-full bg-white text-gray-500 border border-gray-400 hover:border-gray-500 h-10 px-3 py-1 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
             >
-              <option disabled> Price Range </option>
+              <option className="text-blue-200" disabled>
+                Price Range
+              </option>
               <option value="1"> $ </option>
               <option value="2"> $$ </option>
               <option value="3"> $$$ </option>
@@ -62,7 +64,7 @@ const AddRestaurant = () => {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="btn btn-primary"
+            className=" mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white h-10 py-1 px-6 rounded focus:outline-none focus:shadow-outline"
           >
             Add
           </button>
@@ -72,4 +74,4 @@ const AddRestaurant = () => {
   );
 };
 
-export default AddRestaurant;
+export default AddShop;

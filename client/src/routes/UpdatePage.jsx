@@ -1,11 +1,13 @@
 import React from 'react';
+import { ReactComponent as CoffeeIcon } from '../assets/drink.svg';
 
-import UpdateRestaurant from '../components/UpdateRestaurant';
+import UpdateShop from '../components/UpdateShop';
 
 const UpdatePage = () => {
   return (
     <div>
-      <UpdateRestaurant />
+      <CoffeeIcon style={{ width: '70px', height: '70px' }} />
+      <UpdateShop />
     </div>
   );
 };

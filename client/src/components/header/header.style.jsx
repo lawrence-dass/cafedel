@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Title = styled.div.attrs({
-  className: 'text-pink-900 pt-1 font-heading text-center text-8xl',
+  className: 'text-pink-900 font-heading text-center text-6xl',
 })``;
 
 export const SubTitle = styled.div.attrs({

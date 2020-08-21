@@ -2,27 +2,25 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from './routes/Home';
-import RestaurantDetail from './routes/RestaurantDetail';
+import ShopDetail from './routes/ShopDetail';
 import UpdatePage from './routes/UpdatePage';
-import { RestautantsContextProvider } from './context/RestaurantContext';
+import { ShopsContextProvider } from './context/ShopContext';
+import Footer from './components/footer/footer.component';
 
 const App = () => {
   return (
-    <RestautantsContextProvider>
-      <div className="container">
+    <ShopsContextProvider>
+      <div className="container mx-auto">
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/restaurants/:id" component={RestaurantDetail} />
-            <Route
-              exact
-              path="/restaurants/:id/update"
-              component={UpdatePage}
-            />
+            <Route exact path="/shops/:id" component={ShopDetail} />
+            <Route exact path="/shops/:id/update" component={UpdatePage} />
           </Switch>
+          <Footer />
         </Router>
       </div>
-    </RestautantsContextProvider>
+    </ShopsContextProvider>
   );
 };
 
