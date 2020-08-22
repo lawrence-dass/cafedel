@@ -35,9 +35,12 @@ const ShopDetail = () => {
               {selectedShop.shop.count ? `(${selectedShop.shop.count})` : '(0)'}
             </span>
           </div>
-          <h1 className="text-pink-800 mb-3 h-40 font-subHeading text-center text-3xl">
-            {!selectedShop.shop.count &&
-              'No Reviews, go ahead post some of your coffee experience!'}
+          <h1 className="text-pink-800 mb-3 font-subHeading text-center text-3xl">
+            {!selectedShop.shop.count && (
+              <p className="h-40 mt-30">
+                No Reviews, go ahead post some of your coffee experience!'
+              </p>
+            )}
           </h1>
           {selectedShop.shop.count === 0 && <h1> No Reviews yet </h1>}
           <div className="mt-3">

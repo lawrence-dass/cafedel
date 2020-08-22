@@ -5,7 +5,6 @@ import { formatDistance } from 'date-fns';
 import Avatar from 'react-avatar';
 
 const Reviews = ({ reviews }) => {
-  console.log('reviews', reviews);
   return (
     <div className=" flex w-11/12 flex-wrap content-start rounded-lg p-3 m-auto">
       {reviews.map((review) => (
