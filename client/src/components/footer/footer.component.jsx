@@ -2,6 +2,7 @@ import React from 'react';
 
 const footerStyles = {
   position: 'absolute',
+  top: '100%',
   bottom: '0px',
   display: 'flex',
 };

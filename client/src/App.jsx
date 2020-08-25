@@ -10,7 +10,7 @@ import Footer from './components/footer/footer.component';
 const App = () => {
   return (
     <ShopsContextProvider>
-      <div className="container mx-auto">
+      <div className="container mx-auto" style={{ position: 'relative' }}>
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
