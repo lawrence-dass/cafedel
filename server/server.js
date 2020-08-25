@@ -26,7 +26,10 @@ app.get("/shops", async (req, res) => {
       },
     });
   } catch (err) {
-    console.log({ err });
+    res.status(400).json({
+      status: "error",
+      message: "bad request",
+    });
   }
 });
 
@@ -49,7 +52,10 @@ app.get("/shops/:id", async (req, res) => {
       },
     });
   } catch (err) {
-    console.log({ err });
+    res.status(400).json({
+      status: "error",
+      message: "bad request",
+    });
   }
 });
 
@@ -67,7 +73,6 @@ app.post("/shops", async (req, res) => {
       },
     });
   } catch (err) {
-    console.log({ err });
     res.status(400).json({
       status: "error",
       message: "bad request",
@@ -89,7 +94,10 @@ app.put("/shops/:id", async (req, res) => {
       },
     });
   } catch (err) {
-    console.log({ err });
+    res.status(400).json({
+      status: "error",
+      message: "bad request",
+    });
   }
 });
 
@@ -106,11 +114,14 @@ app.delete("/shops/:id", async (req, res) => {
     res.status(200).json({
       status: "success",
       data: {
-        shop: "dummy deleted",
+        message: "shop deleted",
       },
     });
   } catch (err) {
-    console.log({ err });
+    res.status(400).json({
+      status: "error",
+      message: "bad request",
+    });
   }
 });
 
@@ -122,7 +133,6 @@ app.post("/shops/:id/addReview", async (req, res) => {
       "INSERT INTO reviews (shop_id, name, review, rating) VALUES ($1, $2, $3, $4 ) returning *",
       [req.params.id, req.body.name, req.body.review, req.body.rating]
     );
-    console.log(newReview.rows[0]);
 
     res.status(201).json({
       status: "success",
@@ -131,7 +141,10 @@ app.post("/shops/:id/addReview", async (req, res) => {
       },
     });
   } catch (err) {
-    console.log({ err });
+    res.status(400).json({
+      status: "error",
+      message: "bad request",
+    });
   }
 });
 

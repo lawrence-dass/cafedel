@@ -1,9 +1,12 @@
 import React, { useEffect, useContext } from 'react';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { useHistory } from 'react-router-dom';
 
 import ShopService from '../../apis/ShopService';
 import { ShopsContext } from '../../context/ShopContext';
-import { useHistory } from 'react-router-dom';
-import StarRating from './../StarRating';
+
+import StarRating from './../star-rating/star.rating.component';
 
 import {
   ShopListContainer,
@@ -18,6 +21,8 @@ import {
   DeleteButton,
 } from './shop-list.style';
 
+const MySwal = withReactContent(Swal);
+
 const ShopsList = () => {
   const { shops, setShops } = useContext(ShopsContext);
 
@@ -28,7 +33,6 @@ const ShopsList = () => {
       try {
         const response = await ShopService.get('/');
         setShops(response.data.data.shops);
-        console.log(response);
       } catch (err) {
         console.log({ err });
       }
@@ -39,13 +43,25 @@ const ShopsList = () => {
   const handleDelete = async (e, id) => {
     e.stopPropagation();
     try {
-      const response = await ShopService.delete(`/${id}`);
-      console.log({ response });
-      setShops(
-        shops.filter((restaurant) => {
-          return restaurant.id !== id;
-        })
-      );
+      MySwal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+      }).then(async (result) => {
+        if (result.value) {
+          await ShopService.delete(`/${id}`);
+          setShops(
+            shops.filter((restaurant) => {
+              return restaurant.id !== id;
+            })
+          );
+          Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+        }
+      });
     } catch (err) {
       console.log({ err });
     }

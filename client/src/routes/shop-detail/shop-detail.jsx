@@ -1,10 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ShopsContext } from '../context/ShopContext';
-import ShopService from '../apis/ShopService';
-import Reviews from '../components/Reviews';
-import AddReview from '../components/AddReview';
-import StarRating from '../components/star-rating/star.rating.component';
+
+import { ShopsContext } from './../../context/ShopContext';
+import ShopService from './../../apis/ShopService';
+import Reviews from './../../components/reviews/reviews.component';
+import AddReview from './../../components/add-review/add-review.component';
+import StarRating from './../../components/star-rating/star.rating.component';
+import SecondaryHeader from './../../components/secondary-header/secondary-header';
+import {
+  ShopName,
+  StarRatingContainer,
+  ReviewCount,
+  NoReviewMessage,
+  NoReviewMessageContainer,
+  ReviewsContianer,
+} from './shop-detail.style';
 
 const ShopDetail = () => {
   const { id } = useParams();
@@ -26,28 +36,26 @@ const ShopDetail = () => {
     <div>
       {selectedShop && (
         <>
-          <h1 className="text-pink-900 pt-1 font-heading text-center text-8xl">
-            {selectedShop.shop.name}
-          </h1>
-          <div className="text-center">
+          <SecondaryHeader />
+          <ShopName>{selectedShop.shop.name}</ShopName>
+          <StarRatingContainer>
             <StarRating rating={selectedShop.shop.average_rating} />
-            <span className="text-warning ml-1 text-sm text-gray-900">
+            <ReviewCount>
               {selectedShop.shop.count ? `(${selectedShop.shop.count})` : '(0)'}
-            </span>
-          </div>
-          <h1 className="text-pink-800 mb-3 font-subHeading text-center text-3xl">
+            </ReviewCount>
+          </StarRatingContainer>
+          <NoReviewMessageContainer>
             {!selectedShop.shop.count && (
-              <p className="h-40 mt-30">
+              <NoReviewMessage>
                 No Reviews, go ahead post some of your coffee experience!'
-              </p>
+              </NoReviewMessage>
             )}
-          </h1>
+          </NoReviewMessageContainer>
           {selectedShop.shop.count === 0 && <h1> No Reviews yet </h1>}
-          <div className="mt-3">
+          <ReviewsContianer>
             <Reviews reviews={selectedShop.reviews} />
-
             <AddReview />
-          </div>
+          </ReviewsContianer>
         </>
       )}
     </div>
