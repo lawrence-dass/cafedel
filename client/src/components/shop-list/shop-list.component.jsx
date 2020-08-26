@@ -19,6 +19,8 @@ import {
   ShopBodyTableDataWithButton,
   UpdateButton,
   DeleteButton,
+  NoReviewText,
+  ReviewCount,
 } from './shop-list.style';
 
 const MySwal = withReactContent(Swal);
@@ -78,12 +80,12 @@ const ShopsList = () => {
 
   const renderRating = (shop) => {
     if (!shop.count) {
-      return <span className="text-warning"> No reviews</span>;
+      return <NoReviewText> No reviews</NoReviewText>;
     }
     return (
       <>
         <StarRating rating={shop.average_rating} />
-        <span className="text-base pl-1">({shop.count})</span>
+        <ReviewCount>({shop.count})</ReviewCount>
       </>
     );
   };

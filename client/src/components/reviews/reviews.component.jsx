@@ -16,7 +16,7 @@ const Reviews = ({ reviews }) => {
   return (
     <ReviewsContainer>
       {reviews.map((review) => (
-        <Review key={review.id} className="">
+        <Review key={review.id}>
           <Avatar name={review.name} round={true} size="70" />
           <ReviewerNameContainer>
             <ReviewerName> {review.name} </ReviewerName>

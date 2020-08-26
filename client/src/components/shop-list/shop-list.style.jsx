@@ -43,3 +43,11 @@ export const DeleteButton = styled.button.attrs({
   className:
     'text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline',
 })``;
+
+export const NoReviewText = styled.span.attrs({
+  className: 'text-warning',
+})``;
+
+export const ReviewCount = styled.span.attrs({
+  className: 'text-base pl-1',
+})``;

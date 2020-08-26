@@ -74,7 +74,7 @@ const AddShop = () => {
   return (
     <AddShopContainer>
       <AddShopForm onSubmit={handleSubmit(onSubmit)}>
-        <AddShopNameContainer className="flex-1 mr-3 ml-20">
+        <AddShopNameContainer>
           <AddShopNameInput
             ref={register({
               required: { value: true, message: 'Required field.' },

@@ -66,7 +66,7 @@ const AddReview = () => {
 
   const AddReviewInputTextError = () => {
     return errors?.reviewText ? (
-      <ReviewTextErrorMessage className="">
+      <ReviewTextErrorMessage>
         {errors?.reviewText?.message}
       </ReviewTextErrorMessage>
     ) : (

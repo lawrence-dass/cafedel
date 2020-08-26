@@ -65,9 +65,7 @@ const UpdateShop = () => {
 
   const InputLocationError = () => {
     return errors?.location ? (
-      <LocationErrorMessage className="">
-        {errors?.location?.message}
-      </LocationErrorMessage>
+      <LocationErrorMessage>{errors?.location?.message}</LocationErrorMessage>
     ) : (
       <LocationErrorPlaceHolder />
     );
