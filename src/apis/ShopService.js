@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: 'http://localhost:8000/shops'
-})
+  baseURL: 'https://quiet-sierra-88776.herokuapp.com/shops',
+});
