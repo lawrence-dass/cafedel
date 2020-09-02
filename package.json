@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "date-fns": "^2.15.0",
     "react": "^16.13.1",
@@ -23,8 +20,7 @@
     "start": "npm run watch:css & react-scripts start",
     "build": "npm run build:css & react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "precommit": "pretty-quick --staged"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,7 +41,6 @@
     "autoprefixer": "^9.8.6",
     "babel-plugin-macros": "^2.8.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "husky": "^4.2.5",
     "postcss-cli": "^7.1.1",
     "prettier": "2.0.5",
     "pretty-quick": "^3.0.0",
