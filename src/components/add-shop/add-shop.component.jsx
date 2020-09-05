@@ -89,7 +89,7 @@ const AddShop = () => {
             ref={register({
               required: { value: true, message: 'Required field.' },
               minLength: { value: 6, message: 'Mininum 6 letters please.' },
-              maxLength: { value: 20, message: 'Maximum 20 letters please.' },
+              maxLength: { value: 30, message: 'Maximum 30 letters please.' },
             })}
           />
           <InputLocationError />
